@@ -1,6 +1,5 @@
 import Head from "next/head";
 import Image from "next/image";
-import styles from "../styles/Home.module.css";
 import { useState, useEffect } from "react";
 
 export default function Home() {
@@ -18,12 +17,12 @@ export default function Home() {
   };
 
   return (
-    <div className={styles.container}>
+    <div>
       <Head>
         <title>Instaloader</title>
       </Head>
 
-      <main className={styles.main}>
+      <main>
         <input
           type="text"
           value={id}
@@ -45,41 +44,69 @@ export default function Home() {
             <li key={`item-${item.id}`}>
               {item.product_type}
               <ul>
-                {item.carousel_media.map((carousel_item, k) => (
-                  <li key={`carousel-${carousel_item.id}`}>
-                    Slide {k + 1}
-                    <ul>
-                      <li>
-                        image_versions:
-                        <ul>
-                          {carousel_item.image_versions2.candidates.map(
-                            (iv) => (
-                              <li key={`carousel-iv-${iv.id}`}>
-                                <a href={iv.url} target="_blank">
-                                  {iv.width}x{iv.height}
-                                </a>
-                              </li>
-                            )
-                          )}
-                        </ul>
-                      </li>
-                      {carousel_item.video_versions && (
+                <li>
+                  {item.carousel_media?.map((carousel_item, k) => (
+                    <li key={`carousel-${carousel_item.id}`}>
+                      Slide {k + 1}
+                      <ul>
                         <li>
-                          video_versions:
+                          image_versions:
                           <ul>
-                            {carousel_item.video_versions?.map((vv) => (
-                              <li key={`carousel-vv-${vv.id}`}>
-                                <a href={vv.url} target="_blank">
-                                  {vv.width}x{vv.height}
-                                </a>
-                              </li>
-                            ))}
+                            {carousel_item.image_versions2.candidates.map(
+                              (iv) => (
+                                <li key={`carousel-iv-${iv.url}`}>
+                                  <a href={iv.url} target="_blank">
+                                    {iv.width}x{iv.height}
+                                  </a>
+                                </li>
+                              )
+                            )}
                           </ul>
                         </li>
-                      )}
-                    </ul>
-                  </li>
-                ))}
+                        {carousel_item.video_versions && (
+                          <li>
+                            video_versions:
+                            <ul>
+                              {carousel_item.video_versions?.map((vv) => (
+                                <li key={`carousel-vv-${vv.url}`}>
+                                  <a href={vv.url} target="_blank">
+                                    {vv.width}x{vv.height}
+                                  </a>
+                                </li>
+                              ))}
+                            </ul>
+                          </li>
+                        )}
+                      </ul>
+                    </li>
+                  ))}
+                  {item.image_versions2 && (
+                    <li>
+                      <ul>
+                        {item.image_versions2.candidates.map((iv) => (
+                          <li key={`carousel-iv-${iv.url}`}>
+                            <a href={iv.url} target="_blank">
+                              {iv.width}x{iv.height}
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    </li>
+                  )}
+                  {item.video_versions && (
+                    <li>
+                      <ul>
+                        {item.ideo_versions.map((vv) => (
+                          <li key={`carousel-iv-${vv.url}`}>
+                            <a href={vv.url} target="_blank">
+                              {vv.width}x{vv.height}
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    </li>
+                  )}
+                </li>
               </ul>
             </li>
           ))}
