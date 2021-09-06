@@ -55,7 +55,7 @@ const Tree = ({ data }) =>
               {item.video_versions && (
                 <li>
                   <ul>
-                    {item.ideo_versions.map((vv) => (
+                    {item.video_versions.map((vv) => (
                       <li key={`carousel-iv-${vv.url}`}>
                         <a href={vv.url} target="_blank">
                           {vv.width}x{vv.height}
